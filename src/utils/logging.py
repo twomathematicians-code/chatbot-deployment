@@ -1,7 +1,7 @@
 import logging, sys
-
-def setup_logging(level: str = "INFO") -> None:
-    logging.basicConfig(level=getattr(logging, level), format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s", handlers=[logging.StreamHandler(sys.stdout)])
-
-def get_logger(name: str) -> logging.Logger:
-    return logging.getLogger(name)
+def get_logger(name: str = "chatbot") -> logging.Logger:
+    log = logging.getLogger(name)
+    if not log.handlers:
+        log.addHandler(logging.StreamHandler(sys.stdout))
+        log.setLevel(logging.INFO)
+    return log

@@ -1,13 +1,9 @@
-from pydantic import Field
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 from functools import lru_cache
-
-class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env")
-    environment: str = "development"
-    log_level: str = "INFO"
-    mlflow_tracking_uri: str = "http://localhost:5000"
-
+class ChatbotSettings(BaseSettings):
+    vector_store_persist: str = "/app/chroma_data"
+    collection_name: str = "knowledge_base"
+    max_session_turns: int = 50
 @lru_cache
-def get_settings() -> Settings:
-    return Settings()
+def get_settings() -> ChatbotSettings:
+    return ChatbotSettings()

@@ -1,4 +1,18 @@
-model:
-  random_state: 42
-  test_size: 0.2
-  cv_folds: 5
+chatbot:
+  intents:
+    - greeting
+    - farewell
+    - product_inquiry
+    - support
+    - pricing
+    - complaint
+    - feedback
+    - general
+  session:
+    max_turns: 50
+    timeout_minutes: 30
+rag:
+  vector_store: chromadb
+  collection_name: knowledge_base
+  chunk_size: 500
+  top_k_results: 3

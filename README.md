@@ -1,40 +1,52 @@
-# 🤖 ML Chatbot Deployment
+<div align="center">
 
-[![CI/CD](https://github.com/twomathematicians-code/ml-chatbot-deployment/actions/workflows/ci.yml/badge.svg)](https://github.com/twomathematicians-code/ml-chatbot-deployment/actions)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://hub.docker.com/)
-[![LangChain](https://img.shields.io/badge/LangChain-RAG-1C3C3C?logo=langchain)](https://www.langchain.com/)
+# Chatbot Deployment Platform
 
-**Production chatbot deployment platform: RAG-based conversational AI, multi-turn dialogue, Telegram & WhatsApp bot connectors, intent classification, and document Q&A — all containerized and CI/CD-ready.**
+### RAG + Multi-Turn + Telegram + WhatsApp + Intent Classification
 
-## 🎯 Chatbot Modules
+[![FastAPI](https://img.shields.io/badge/FastAPI-Webhooks-009688)](https://fastapi.tiangolo.com)
+[![LangChain](https://img.shields.io/badge/LangChain-RAG-1C3C3C)](https://langchain.com)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector-Store-E040FB)](https://chromadb.com)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)](https://docker.com)
 
-| Module | Technology | Capability |
-|---|---|---|
-| **RAG Chatbot** | LangChain + ChromaDB | Document-grounded answers |
-| **Intent Classifier** | DistilBERT Fine-tuned | Multi-class intent routing |
-| **Multi-turn Dialogue** | ConversationBufferMemory | Context-aware responses |
-| **Telegram Bot** | python-telegram-bot | Full Telegram integration |
-| **WhatsApp Bot** | Twilio API | WhatsApp messaging |
+</div>
 
-## 🚀 Quick Start
+---
 
-```bash
-git clone https://github.com/twomathematicians-code/ml-chatbot-deployment.git
-cd ml-chatbot-deployment
-docker-compose up --build
+## Architecture
+
+```
+Telegram + WhatsApp + REST --> FastAPI Router --> Intent Classifier --> Response Generator
+                                                        |
+                                                   ChromaDB Vector Store
 ```
 
-## 🔌 API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/v1/chat` | RAG-grounded chat |
-| `POST` | `/api/v1/chat/intent` | Intent classification |
-| `POST` | `/api/v1/chat/qa` | Document Q&A |
-| `POST` | `/api/v1/telegram/webhook` | Telegram webhook |
-| `POST` | `/api/v1/whatsapp/webhook` | WhatsApp webhook |
-| `GET` | `/api/v1/health` | Health check |
+## Features
 
-## 👤 Author
+- **RAG Document Q&A** -- upload docs, ask questions, get sourced answers
+- **Intent Classification** -- 8 intents with confidence scoring
+- **Multi-channel** -- Telegram + WhatsApp webhook connectors
+- **Session Management** -- per-session context tracking
 
-**Mahesh Solanki** — [LinkedIn](https://linkedin.com/in/maheshsolanki-16b9a6a5) | [GitHub](https://github.com/twomathematicians-code)
+## Run
+
+```bash
+docker compose up -d
+
+curl -X POST http://localhost:8000/api/v1/chat -d '{"message": "What products do you have?", "session_id": "sess-1"}'
+curl -X POST http://localhost:8000/api/v1/chat/qa -d '{"question": "What is the refund policy?", "document_context": "Our refund policy allows returns within 30 days..."}'
+```
+
+
+## Endpoints
+
+- `POST /api/v1/chat` -- Conversational response
+- `POST /api/v1/chat/intent` -- Classify intent
+- `POST /api/v1/chat/qa` -- Document Q&A
+- `POST /api/v1/telegram/webhook` -- Telegram bot
+- `POST /api/v1/whatsapp/webhook` -- WhatsApp bot
+
+---
+
+<p align="center"><i>Mahesh Solanki</i> -- <a href="https://github.com/twomathematicians-code">GitHub</a></p>
