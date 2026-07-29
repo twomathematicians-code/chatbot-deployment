@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ml-chatbot-deployment"
+name = "chatbot-deployment"
 version = "1.0.0"
 description = "Chatbot deployment platform: RAG-based conversational AI, LangChain integration, ChromaDB vector store, Telegram and WhatsApp webhook connectors."
 authors = ["Mahesh Solanki"]
