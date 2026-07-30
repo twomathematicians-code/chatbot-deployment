@@ -1,4 +1,5 @@
 [tool.poetry]
+packages = [{include = "src"}]
 name = "chatbot-deployment"
 version = "1.0.0"
 description = "Chatbot deployment platform: RAG-based conversational AI, LangChain integration, ChromaDB vector store, Telegram and WhatsApp webhook connectors."
